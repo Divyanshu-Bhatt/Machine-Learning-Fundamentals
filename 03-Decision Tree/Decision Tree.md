@@ -6,7 +6,7 @@ Let our training set be $\mathcal{D} = \{(x_1,y_1),(x_2,y_2) \cdots (x_m,y_m)\}$
 
 Solving with the given below example. Below are three possible classes i.e. $y \in \{1,2,3\}$. Each small colour ball represents a category. Blue nodes means its a decision node i.e. the data in that node doesn’t belong to a single class or we need to further segregate the data . White nodes means its a leaf node i.e. there is no further branches present.
 
-![tree.png](03-Decision%20Tree/tree.png)
+![tree.png](03-Decision%20Tree/images/tree.png)
 
 So we need to find parameters such that we can make some useful splits with the given data. So defining a term called entropy which helps us with it.
 
