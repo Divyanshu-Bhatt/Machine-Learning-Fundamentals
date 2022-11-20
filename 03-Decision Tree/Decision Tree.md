@@ -6,14 +6,15 @@ Let our training set be $\mathcal{D} = \{(x_1,y_1),(x_2,y_2) \cdots (x_m,y_m)\}$
 
 Solving with the given below example. Below are three possible classes i.e. $y \in \{1,2,3\}$. Each small colour ball represents a category. Blue nodes means its a decision node i.e. the data in that node doesn’t belong to a single class or we need to further segregate the data . White nodes means its a leaf node i.e. there is no further branches present.
 
-![tree.png](03-Decision%20Tree/images/tree.png)
-
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/03-Decision%20Tree/images/tree.png" width="300"/>
+</p>
 So we need to find parameters such that we can make some useful splits with the given data. So defining a term called entropy which helps us with it.
 
-Entropy$(E)$ tells us the amount of uncertainty or randomness in the data or the purity of that node i.e.    
+Entropy $(E)$ tells us the amount of uncertainty or randomness in the data or the purity of that node i.e.    
 
 $$
-E = -\sum_{i=1}^k p(y= i)\log_k p(y=i)
+E = -\sum_{i=1}^k p(y= i)\log_2 p(y=i)
 $$
 
 where $p(y=i) = {\ce{number of data points of i^{th}class } \over \ce{total number of data points}}$ 
@@ -23,14 +24,14 @@ $E = 1$ means it has max uncertainty in the class or perfectly impure data and $
 Defining another term called as information gain which tells us which parameter makes the better split. The parameter which maximises the information gain$(IG)$ is taken
 
 $$
-{IG} = E(parent) - \sum_{i=1}^k w_iE(child_i) 
+{IG} = E(\mathrm{parent}) - \sum_{i=1}^k w_iE(\mathrm{child_i}) 
 $$
 
-where $E(parent)$ is entropy of the parent node, $E(child_i)$ is the entropy of the $i^{th}$ child $w_i$ is the percentage of members present in the $i^{th}$ node as compared to the parent node.
+where $E(\mathrm{parent})$ is entropy of the parent node, $E(\mathrm{child_i})$ is the entropy of the $i^{th}$ child $w_i$ is the percentage of members present in the $i^{th}$ node as compared to the parent node.
 
 So our model runs for every possible split for a given feature and finds the best parameter which maximises the information gain.
 
-### Questions
+### Frequently Asked Questions
 
 1. **Which nodes are considered as pure ?**
     
