@@ -1,12 +1,12 @@
 # Decision Tree
 
-It is a type of supervised learning in which we are given some features using them we have to find their respective category. Example, finding the type of flower given different features such as sepal length, sepal width, petal length etc
+Decision Tree is a type of supervised learning in which we are given some features using them we have to find their respective category. Example, finding the type of flower given different features such as sepal length, sepal width, petal length etc
 
-Let our training set be $\mathcal{D} = \{(x_1,y_1),(x_2,y_2) \cdots (x_m,y_m)\}$ where $x_m \in \R^n$ are the features and $y_m \in \{1,2\cdots,k\}$ are our target values.
+Let our training set be $\mathcal{D} = \{(x_1,y_1),(x_2,y_2) \cdots (x_m,y_m)\}$ where $x_m \in \mathbb{R}^n$ are the features and $y_m \in \{1,2\cdots,k\}$ are our target values.
 
 Solving with the given below example. Below are three possible classes i.e. $y \in \{1,2,3\}$. Each small colour ball represents a category. Blue nodes means its a decision node i.e. the data in that node doesn’t belong to a single class or we need to further segregate the data . White nodes means its a leaf node i.e. there is no further branches present.
 
-![Untitled Diagram.drawio (2).png](Decision%20Tree%20ae74319db9df4eccbb5d8ff5eaa6db4e/Untitled_Diagram.drawio_(2).png)
+![tree.png](Decision%20Tree/tree.png)
 
 So we need to find parameters such that we can make some useful splits with the given data. So defining a term called entropy which helps us with it.
 
