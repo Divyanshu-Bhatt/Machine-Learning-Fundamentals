@@ -2,20 +2,20 @@
 
 Support vector machine is a type of supervised learning. It helps in doing binary classification of data. It maps the input feature to a higher dimension and then find a linear hyperplane that separates the two classes which would result in a non-linear decision boundary in the lower dimension.
 
-Let $\mathcal{D} = \{(x_1,y_1)\cdots,(x_m,y_m)\}$ where $x_i \in \R^n$ and $y_i \in \{-1,1\}$ where $-1,1$ represents the two different classes. Lets consider that for now the data is linearly separable
+Let $\mathcal{D} = \{(x_1,y_1)\cdots,(x_m,y_m)\}$ where $x_i \in \mathbb{R}^n$ and $y_i \in \{-1,1\}$ where $-1,1$ represents the two different classes. Lets consider that for now the data is linearly separable
 
 So we try to find such hyperplane which separates the two data. 
 
 $$
-f(x) =\lang w,x\rang + b
+f(x) =\langle w,x\rangle + b
 $$
 
-where $w \in \R^n$ and $b\in \R$. The hyperplane has the normal vector $w$ and the intercept $b$
+where $w \in \mathbb{R}^n$ and $b\in \mathbb{R}$. The hyperplane has the normal vector $w$ and the intercept $b$
 
 Moreover $w$ and $b$ satisfies the following condition
 
 $$
-y_n(\lang w,x_n\rang +b)\ge 0 \Leftrightarrow \begin{cases}\lang w,x_n\rang + b \ge 0 & \ce{when} \ y_n=1\\ \lang w,x_n\rang + b \le 0 & \ce{when} \ y_n=-1\end{cases}
+y_n(\langle w,x_n\rangle +b)\ge 0 \Leftrightarrow \begin{cases}\langle w,x_n\rangle + b \ge 0 & \text{when} \ y_n=1\newline \langle w,x_n\rangle + b \le 0 & \text{when} \ y_n=-1\end{cases}
 $$
 
 But there would be infinite such $w$ present, so one of the best idea is to choose the separating hyperplane that maximises the margin between the two classes i.e. the positive and negative classes.
@@ -26,7 +26,9 @@ Margin is the distance of the separating hyperplane to the closest examples in t
 
 Lets consider an example $x_a$ (the closest example). Without the loss of generality we can consider the example $x_a$ to be on the positive side of the hyperplane. So we want to calculate its distance from the hyperplane
 
-![image.png](Support%20Vector%20Machine%20a9aa83a697564c03a5a40075a614da74/image.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/04-SVM/images/margin1.png" width="300"/>
+</p>
 
 $$
 x_a = x_a' + r{w \over \|w\|}
@@ -35,25 +37,27 @@ $$
 So the distance $r$ is the margin. We want the positive examples to be further than $r$ from the hyperplane and the negative examples to be further than distance $r$ in negative direction hence 
 
 $$
-y_n(\lang w,x_n\rang + b) \ge r
+y_n(\langle w,x_n\rangle + b) \ge r
 $$
 
 As for the hyperplane we only need the direction of $w$ and not the magnitude. Hence, we can make another condition for making the calculations easier i.e. $\|w\|  =1$, so that $r$ is just the scaling factor. Thus our optimising problem becomes
 
 $$
-\max_{w,b,r}{ r}\\
-\ce{subject to} \ {y_n(\lang w,x_n \rang + b) \ge r},\quad {\|w\| = 1}, \quad r>0
+\max_{w,b,r}{ r}\newline
+\ce{subject to} \ {y_n(\langle w,x_n \rangle + b) \ge r},\quad {\|w\| = 1}, \quad r>0
 $$
 
 Another method is to make the margin $1$ rather normalising the vector 
 
-![image.png](Support%20Vector%20Machine%20a9aa83a697564c03a5a40075a614da74/image%201.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/04-SVM/images/margin2.png" width="300"/>
+</p>
 
 From this figure, as $x'_a$ lies on the hyperplane hence it would satisfy its equation i.e. 
 
 $$
-\lang w,x'_a\rang + b= 0\\
-\bigg\lang w,x_a-r{w\over \|w\|}\bigg\rang + b = 0\\ \lang w,x_a\rang + b + \bigg\lang w,-r{w\over \|w\|}\bigg\rang = 0\\ \bigg\lang w,r{w\over \|w\|}\bigg\rang= 1\\
+\langle w,x'_a\rangle + b= 0\newline
+\left\langle w,x_a-r{w\over \|w\|}\right\rangle + b = 0\newline \langle w,x_a\rangle + b + \left\langle w,-r{w\over \|w\|}\right\rangle = 0\\ \left\langle w,r{w\over \|w\|}\right\rangle= 1\newline
 r ={1\over \|w\|}
 $$
 
