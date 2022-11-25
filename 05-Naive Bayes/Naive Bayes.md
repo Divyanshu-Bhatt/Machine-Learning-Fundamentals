@@ -18,9 +18,7 @@ Lets take the example of spam filter. First we have to map the text of the mail 
 So our vector $x_i \in\mathbb{R}^k$ (the $i^{th}$ mail) will contain $0$s and $1$s. Each index of the vector $x_i$ will correspond to a word and value $1$ at that index means that, that word is present in the text otherwise it would be $0$.  So
 
 $$
-\begin{gather}
-x_{ij} = \mathcal{I} \begin{cases}\text{if word corresponding to the j{th} index is present in the text}\end{cases} \curly
-\end{gather}
+x_{ij} = \mathcal{I} \left[\text{if word corresponding to the j{th} index is present in the text}\right]
 $$
 
 where $\mathcal{I}\{\}$ returns $1$ if the statement inside it is correct otherwise it returns $0$. Let we define $X_1,X_2,\cdots X_k$ are the all different words and $X_i$ corresponds to the $i^{th}$ index
@@ -38,15 +36,15 @@ We need to find $\phi_{j\mid y=1}=p(X_j\mid y=1)$ i.e. the probability if the $j
 With the given data it can be find by  
 
 $$
-\phi_{j\mid y=1} = {\displaystyle\sum_{i=1}^m \mathcal{I}\{x_{ij}=1,y_i=1\}\over \displaystyle\sum_{i=1}^m\mathcal{I}\{y_i=1\}}
+\phi_{j\mid y=1} = {\displaystyle\sum_{i=1}^m \mathcal{I} \left[x_{ij}=1,y_i=1\right]\over \displaystyle\sum_{i=1}^m\mathcal{I}\left[y_i=1\right]}
 $$
 
 $$
-\phi_{j\mid y=0} = {\displaystyle\sum_{i=1}^m \mathcal{I}\{x_{ij}=1,y_i=0\}\over \displaystyle\sum_{i=1}^m\mathcal{I}\{y_i=0\}}
+\phi_{j\mid y=0} = {\displaystyle\sum_{i=1}^m \mathcal{I}\left[x_{ij}=1,y_i=0\right]\over \displaystyle\sum_{i=1}^m\mathcal{I}\left[y_i=0\right]}
 $$
 
 $$
-\phi_{y} = {\displaystyle\sum_{i=1}^m \mathcal{I}\{y_i=1\}\over m}
+\phi_{y} = {\displaystyle\sum_{i=1}^m \mathcal{I}\left[y_i=1\right]\over m}
 $$
 
 So $\phi_{y=1},\phi_{y=0}\in \mathbb{R}^k$ (all the different words) 
@@ -62,11 +60,11 @@ The problem with the above method is that if a new word arise in the test set th
 For each outcome possible we add a $1$ i.e. 
 
 $$
-\phi_{j\mid y=1} = {\displaystyle\sum_{i=1}^m \mathcal{I}\{x_{ij}=1,y_i=1\}+1\over \displaystyle\sum_{i=1}^m\mathcal{I}\{y_i=1\}+2}
+\phi_{j\mid y=1} = {\displaystyle\sum_{i=1}^m \mathcal{I}\left[x_{ij}=1,y_i=1\right]+1\over \displaystyle\sum_{i=1}^m\mathcal{I}\left[y_i=1\right]+2}
 $$
 
 $$
-\phi_{j\mid y=0} = {\displaystyle\sum_{i=1}^m \mathcal{I}\{x_{ij}=1,y_i=0\}+1\over \displaystyle\sum_{i=1}^m\mathcal{I}\{y_i=0\}+2}
+\phi_{j\mid y=0} = {\displaystyle\sum_{i=1}^m \mathcal{I}\left[x_{ij}=1,y_i=0\right]+1\over \displaystyle\sum_{i=1}^m\mathcal{I}\left[y_i=0\right]+2}
 $$
 
 ### Questions
@@ -75,18 +73,11 @@ $$
     
     A generative model focuses on explaining how the data was generated example naive bayes algorithm, while a discriminative model focuses on predicting the labels of the data example logistic regression.
     
-2. **What is Bayes Theorem ?**
-    
- $$
- \begin{gather}
- \underbrace{p(x\mid y)}_{x} ={\overbrace{p(y\mid x)}^\text{likelihood}\overbrace{p(x)}^\text{prior}\over \underbrace{p(y)}_{\text{evidence}}}
- \end{gather}$$
-    
-3. **Why is Naive Bayes algorithm is called Naive ?**
+2. **Why is Naive Bayes algorithm is called Naive ?**
     
     It is called Naive because it doesn’t depend on the order of the words. Example the probability for “Respected Sir” and “Sir Respected” would be the same. Moreover it ignores the grammatical rules
     
-4. **What is the main assumption we take in Naive Bayes algorithm ?**
+3. **What is the main assumption we take in Naive Bayes algorithm ?**
     
     The main assumption of Naive Bayes algorithm is all data are conditionally independent i.e. 
     
@@ -94,6 +85,6 @@ $$
  p(x_1,x_2\mid y) = p(x_1\mid y)p(x_2\mid y)
  $$
     
-5. **Why do we need Laplace Smoothing ?**
+4. **Why do we need Laplace Smoothing ?**
     
     To avoid the case of ${0 \over 0}$ when a new word comes in the test set which was never seen before in the training set.
