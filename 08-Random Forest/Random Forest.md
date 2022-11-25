@@ -1,10 +1,12 @@
 # Random Forest
 
-It is also a type of supervised learning and based on decision trees. Random forest is based on bagging method. 
+Random Forest is also a type of supervised learning and based on decision trees. Random forest is based on bagging method. 
 
 The original data set $\mathcal{D}$ is divided into $N$ equal smaller data sets $d_1,d_2\cdots d_N$. For each data set a decision tree is trained. During testing, the data point is given to each decision tree. All the decision tress will give there respective prediction and the category chose by the majority of the trees is considered as the category of the data point.   
 
-![random.svg](Random%20Forest%20c4b4d98135d847298c3f7ac5e9498d1b/random.svg)
+<p align="center">
+    <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/08-Random%20Forest/images/Random_Forest.svg" width="700px">
+</p>
 
 ### Questions
 
