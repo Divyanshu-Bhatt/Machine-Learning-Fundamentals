@@ -5,7 +5,10 @@ It is a type of supervised learning algorithm. It tries to predict the correct c
 The kNN algorithm is based on the fact that similar data perform clusters. Given a data set 
 $\mathcal{D} = \{(x_1,y_1)\cdots(x_m,y_m)\}$ where $y = \{1,2,\cdots ,k\}$ be different classes.
 
-![Knn.drawio (1).svg](k-%20Nearest%20Neighbour%2045d5857a088c44bd95f59aaa0bad793a/Knn.drawio_(1).svg)
+
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/06-KNN/images/Knn.drawio_(1).svg" width="300"/>
+</p>
 
 In order to find the class of a new data point $z$, we find the distance of that data point from all the other points in the training data set i.e. 
 
@@ -13,10 +16,7 @@ $$
 \|z-x_i\| \ \forall i \in 1,\cdots ,m
 $$
 
-<aside>
-📌 As distance is the metric for the classification of a data point to a class, hence the data set is initially normalised to remove all the different scaling in different dimensions.
-
-</aside>
+As distance is the metric for the classification of a data point to a class, hence the data set is initially normalised to remove all the different scaling in different dimensions.
 
 Now we find the first $k$ closest point to $z$. The class with the most number of count in these $k$ closest point will be assigned to $z$. If there are two or more classes has the same and the maximum number of counts then either the data point is left unmarked or their is a coin flip (i.e. randomly assigned between the maximum count classes).
 
