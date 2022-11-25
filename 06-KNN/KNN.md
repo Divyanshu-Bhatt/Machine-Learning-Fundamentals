@@ -7,7 +7,7 @@ $\mathcal{D} = \{(x_1,y_1)\cdots(x_m,y_m)\}$ where $y = \{1,2,\cdots ,k\}$ be di
 
 
 <p align="center">
-     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/06-KNN/images/Knn.drawio_(1).svg" width="300"/>
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/06-KNN/images/KNN.svg" width="300"/>
 </p>
 
 In order to find the class of a new data point $z$, we find the distance of that data point from all the other points in the training data set i.e. 
