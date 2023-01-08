@@ -80,7 +80,9 @@ One of the most important thing kept in mind while constructing the matrices $U$
 
 Following is an illustration of how the transformation takes place through SVD
 
-##image###
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/11-SVD/images/visualise.png" width="300"/>
+</p>
 
 $A \in \mathbb{R}^{3\times2}$   $V^T$performs a basis change in $\mathbb{R}^2$
 $\Sigma$ scales and maps from $\mathbb{R}^2$ to $\mathbb{R}^3$
