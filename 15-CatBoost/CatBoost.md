@@ -56,7 +56,9 @@ The columns $\ce{total counts}$ and $\ce{Count in Class}$ are not there in  the 
 
 Then the model proceeds by building symmetric binary trees for each permutation of the data. Symmetric binary trees are the trees in which at each level, all the nodes present at that level will have the same split condition
 
-![Untitled Diagram.drawio.svg](CatBoost%20f6ed8d88260547ecb96b6c610bb43067/Untitled_Diagram.drawio.svg)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/15-CatBoost/images/symmetric_tree.svg" width="300"/>
+</p>
 
 ### Questions
 
