@@ -17,7 +17,9 @@ $$
 
 Generally $\mathcal{P} = 30$
 
-![Data Visualisation on the MNIST data set with different perplexity](T-Stochastic%20Neighbour%20Embedding%2039e9c203f53d48b1a763ad5697737eb9/Untitled.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/09-Tsne/images/perplexity.png" width="500"/>
+</p>
 
 Data Visualisation on the MNIST data set with different perplexity
 
@@ -31,7 +33,9 @@ Let $\tilde{\mathcal{D}}=\{y_1,y_2,\cdots,y_m\}$ are the low dimensional represe
 
 Now we calculate the similarities between the data points in this low dimension. But in the low dimensional map we can use a  probability distribution that has much heavier tails than a Gaussian to convert distance into probabilities. So instead of using Gaussian Kernel we use the T-kernel. 
 
-![desmos-graph (1).png](T-Stochastic%20Neighbour%20Embedding%2039e9c203f53d48b1a763ad5697737eb9/desmos-graph_(1).png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/09-Tsne/images/distribution.png" width="300"/>
+</p>
 
 Similarly we calculate $q_{ij}$
 
@@ -60,7 +64,7 @@ $$
 Now we can apply gradient descent on the above loss function where ${\partial \mathcal{L} \over \partial y_i}$ is a following
 
 $$
-\begin{align*}{\partial\mathcal{L} \over \partial y_i} &= -\sum_{j} p_{ij} {1\over w_{ij}}{\partial w_{ij} \over \partial y_i} + {1\over Z} \sum_j {\partial w_{ij} \over \partial y_i}\\ &=  -2\sum_{j} p_{ij} {w_{ij}}{(y_i-y_j)} + {2\over Z} \sum_j w_{ij}^2(y_i-y_j)  \end{align*}
+\begin{gather}{\partial\mathcal{L} \over \partial y_i} &= -\sum_{j} p_{ij} {1\over w_{ij}}{\partial w_{ij} \over \partial y_i} + {1\over Z} \sum_j {\partial w_{ij} \over \partial y_i}\\ &=  -2\sum_{j} p_{ij} {w_{ij}}{(y_i-y_j)} + {2\over Z} \sum_j w_{ij}^2(y_i-y_j)  \end{gather}
 $$
 
 $$
@@ -70,29 +74,5 @@ $$
 The $2$ can be adjusted in the learning rate hence 
 
 $$
-\begin{align*}{\partial\mathcal{L} \over \partial y_i}\sim  -\sum_{j} p_{ij} {w_{ij}}{(y_i-y_j)} + {1\over Z} \sum_j w_{ij}^2(y_i-y_j)  \end{align*}
+\begin{gather}{\partial\mathcal{L} \over \partial y_i}\sim  -\sum_{j} p_{ij} {w_{ij}}{(y_i-y_j)} + {1\over Z} \sum_j w_{ij}^2(y_i-y_j)  \end{gather}
 $$
-
-### Questions
-
-1. **Why is t-kernel used over Gaussian kernel in the low dimension?**
-    
-    t distribution has a heavy tail as compared to Gaussian distribution, which helps to address the crowding.
-    
-2. **Why do we make probability symmetric?**
-    
-    In order to create the probability distribution $P = \{p_{ij}\}_{i,j=1}^n$ where 
-    
-    $$
-    p_{ij} = {p_{j\mid i}+p_{i\mid j}\over 2m}
-    $$
-    
-    like $Q = \{q_{ij}\}_{i,j = 1}^n$
-    
-3. **What is  Kullback-Leibler divergence?**
-    
-    It is a type of statistical distance that measures of how one probability distribution P is different from a second, reference probability distribution Q which is calculated as following  
-    
-    $$
-    D_{KL}(P \mid \mid Q) = \sum_{x \in \mathcal{X}} P(x)\log\bigg({P(x) \over Q(x) }\bigg)
-    $$
