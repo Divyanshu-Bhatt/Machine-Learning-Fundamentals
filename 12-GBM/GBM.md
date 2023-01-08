@@ -4,7 +4,7 @@ Gradient Boosting is a type of supervised learning algorithm. Unlike gradient de
 
 ### Regression with GBM
 
-Let our data $\mathcal{D} = \{(x_1,y_1),(x_2,y_2),\cdots,(x_m,y_m)\}$ where $x_i \in \R^n$ and $y_i \in \R$
+Let our data $\mathcal{D} = \{(x_1,y_1),(x_2,y_2),\cdots,(x_m,y_m)\}$ where $x_i \in \mathbb{R}^n$ and $y_i \in \mathbb{R}$
 
 As we are performing regression so we can define our loss function as least squared error i.e. 
 
@@ -15,22 +15,30 @@ $$
 We initialise our model with a constant value such that 
 
 $$
-f_0(x) = \argmin_\gamma\sum_{i=1}^m\mathcal{L}(y_i,\gamma) 
+f_0(x) = \arg\min_\gamma\sum_{i=1}^m\mathcal{L}(y_i,\gamma) 
 $$
 
 $$
-L(y,\gamma) = {1\over 2}\sum_{i=1}^m[y_i-\gamma]^2\\
-{\partial L \over \partial \gamma} = -\sum_{i=1}^m(y_i-\gamma)=0\\
+L(y,\gamma) = {1\over 2}\sum_{i=1}^m[y_i-\gamma]^2
+$$
+
+$$
+{\partial L \over \partial \gamma} = -\sum_{i=1}^m(y_i-\gamma)=0
+$$
+
+$$
 \gamma = {1\over m}\sum_{i=1}^my_i
 $$
 
 Hence, $f_0(x)$ is defined as the average of the target values. 
 
-Now we compute the pseudo residual vector $r \in \R^n$ i.e. 
+Now we compute the pseudo residual vector $r \in \mathbb{R}^n$ i.e. 
 
 $$
-\begin{align*}r_i &= -{\partial \mathcal{L(y_i,F(x_i))} \over \partial f(x_i)}\bigg|_{\mathcal{F}(x_i) =f_0(x_i)}\\
-&\Rightarrow r_i = y_i -\mathcal{F}(x_i) \end{align*}
+\begin{gather}
+r_i = -{\partial \mathcal{L(y_i,F(x_i))} \over \partial f(x_i)}\bigg|_{\mathcal{F}(x_i) =f_0(x_i)} \newline
+\Rightarrow r_i = y_i -\mathcal{F}(x_i) 
+\end{gather}
 $$
 
 Now we build our weak model, e.g. a decision tree with less max depth. We build our decision tree on the residual data i.e. $\mathcal{D_1} = \{(x_1,r_1),(x_2,r_2),\cdots(x_m,r_m)\}$  i.e. the actual target vector are replaced by the pseudo residual vector $r$. 
@@ -38,16 +46,16 @@ Now we build our weak model, e.g. a decision tree with less max depth. We build 
 As there would be more than one data point present in some of the leaf nodes hence we have to find a best fitting value $\gamma_j$ for each leaf node.
 
 $$
-\gamma_j = \argmin_\gamma \sum_{x_i \in l_j}\mathcal{L}(y_i,f_0(x_i)+\gamma)
+\gamma_j = \arg\ min_\gamma \sum_{x_i \in l_j}\mathcal{L}(y_i,f_0(x_i)+\gamma)
 $$
 
 As this is a similar loss function as above hence this will also be the average i.e. 
 
 $$
-\gamma_j = {1\over \#l_i}\sum_{x_i\in l_i}y_i -f_0(x_i) 
+\gamma_j = {1\over N(l_i)}\sum_{x_i\in l_i}y_i -f_0(x_i) 
 $$
 
-where $\#l_i$ is the number of data points present in the leaf node 
+where $N(l_i)$ is the number of data points present in the leaf node 
 
 Now we update our function i.e. 
 
@@ -78,23 +86,28 @@ $$
 As above we follow similar steps i.e. we initialise our model with a constant value such that 
 
 $$
-f_0(x) = \argmin_\gamma\sum_{i=1}^m\mathcal{L}(y_i,\gamma) 
+f_0(x) = \arg\min_\gamma\sum_{i=1}^m\mathcal{L}(y_i,\gamma) 
 $$
 
 $$
-L(y,\gamma) =- \sum_{i=1}^my_i\gamma+\ln(1+e^{\gamma}) \\{\partial L \over \partial \gamma}= -\sum_{i=1}^my_i+{e^\gamma\over 1+e^\gamma}=0\\
-\Rightarrow \gamma = \ln({p\over 1-p})\\
-p = {1\over m}\sum_{i=1}^my_i\\
+L(y,\gamma) =- \sum_{i=1}^m y_i\gamma+\ln(1+e^{\gamma}) \newline
+$$
 
+$$
+\begin{gather}
+{\partial L \over \partial \gamma}= -\sum_{i=1}^my_i+{e^\gamma\over 1+e^\gamma}=0\newline
+\Rightarrow \gamma = \ln({p\over 1-p})\newline
+p = {1\over m}\sum_{i=1}^my_i \newline
+\end{gather}
 $$
 
 Hence, $f_0(x)$ is defined as the average of the target values. 
 
-Computing the pseudo residual vector $r \in \R^n$ i.e. 
+Computing the pseudo residual vector $r \in \mathbb{R}^n$ i.e. 
 
 $$
-\begin{align*}&r_i = -{\partial \mathcal{L(y_i,F(x_i))} \over \partial f(x_i)}\bigg|_{\mathcal{F}(x_i) =f_0(x_i)}\\
-\Rightarrow &r_i = y_i -{1\over 1+e^{-\mathcal{F}(x_i)}}\bigg| _{\mathcal{F}(x_i) =f_0(x_i)}\\ \Rightarrow & r_i =y_i-\hat{y}_i\end{align*}
+\begin{gather}&r_i = -{\partial \mathcal{L(y_i,F(x_i))} \over \partial f(x_i)}\bigg|_{\mathcal{F}(x_i) =f_0(x_i)}\newline
+\Rightarrow &r_i = y_i -{1\over 1+e^{-\mathcal{F}(x_i)}}\bigg| _{\mathcal{F}(x_i) =f_0(x_i)}\newline \Rightarrow & r_i =y_i-\hat{y}_i\end{gather}
 $$
 
 We build our decision tree on the residual data i.e. $\mathcal{D_1} = \{(x_1,r_1),(x_2,r_2),\cdots(x_m,r_m)\}$  i.e. the actual target vector are replaced by the pseudo residual vector $r$. 
@@ -102,7 +115,7 @@ We build our decision tree on the residual data i.e. $\mathcal{D_1} = \{(x_1,r_1
 As there would be more than one data point present in some of the leaf nodes hence we have to find a best fitting value $\gamma_j$ for each leaf node.
 
 $$
-\gamma_j = \argmin_\gamma \sum_{x_i \in l_j}\mathcal{L}(y_i,f_0(x_i)+\gamma)
+\gamma_j = \arg\min_\gamma \sum_{x_i \in l_j}\mathcal{L}(y_i,f_0(x_i)+\gamma)
 $$
 
 But here finding the derivative and making it zero is tough, hence its better to apply gradient descent where   
@@ -130,7 +143,7 @@ $$
 and we can make our predictions as 
 
 $$
-y^* = \begin{cases} 1 & \hat{y} > 0.5\\ 0 & \ce{otherwise}\end{cases}
+y^* = \begin{cases} 1 & \hat{y} > 0.5\newline 0 & \ce{otherwise}\end{cases}
 $$
 
 Below is an embedded link of a website which have an interactive playground for Gradient Boosting
