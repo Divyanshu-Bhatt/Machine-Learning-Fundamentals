@@ -4,10 +4,10 @@ LightGBM is an extension of Gradient Boosting Machine which helps in reducing tr
 
 The main cost in GBDT (Gradient Boosted Decision Trees) lies is the learning of decision trees and specifically in choosing the best split points. GBDT performs the split on the data set as following.
 
-Let a data set $\mathcal{D} = \{x_1,x_2,\cdots x_m\}$ where $x_i \in \R^n$. Let we have already defined a loss function $\mathcal{L}$ according to target values in our data set. In each iteration of gradient boosting let the negative gradients of the loss function with respect to the output of the model are denoted by $\{g_1,\cdots ,g_n\}$ i.e. 
+Let a data set $\mathcal{D} = \{x_1,x_2,\cdots x_m\}$ where $x_i \in \mathbb{R}^n$. Let we have already defined a loss function $\mathcal{L}$ according to target values in our data set. In each iteration of gradient boosting let the negative gradients of the loss function with respect to the output of the model are denoted by $\{g_1,\cdots ,g_n\}$ i.e. 
 
 $$
-g_i = {-d\over df_m}\mathcal{L}(y_i,f_m(x_i))
+g_i = -{d\over df_m}\mathcal{L}(y_i,f_m(x_i))
 $$
 
 where $f_m$ is the output of the model
@@ -23,14 +23,21 @@ $$
 where  
 
 $$
-n_{\mathcal{O}} =\sum\mathcal{I}(x_i \in \mathcal{O})\\
-n_{Lj\mid \mathcal{O}} = \sum\mathcal{I}(x_i \in \mathcal{O} , x_{ij} \le d)\\n_{Rj\mid \mathcal{O}} = \sum\mathcal{I}(x_i \in \mathcal{O} , x_{ij} > d)
+n_{\mathcal{O}} =\sum\mathcal{I}(x_i \in \mathcal{O})$$
+$$
+
+$$
+n_{Lj\mid \mathcal{O}} = \sum\mathcal{I}(x_i \in \mathcal{O} , x_{ij} \le d)
+$$
+
+$$
+n_{Rj\mid \mathcal{O}} = \sum\mathcal{I}(x_i \in \mathcal{O} , x_{ij} > d)
 $$
 
 so we find $d^*$ such that 
 
 $$
-d^* = \argmax_d \mathbb{V}_{j \mid \mathcal{O}}[d]
+d^* = \arg \max_d \mathbb{V}_{j \mid \mathcal{O}}[d]
 $$
 
 But this would cause a lot of computation. So LightGBM uses GOSS i.e. Gradient Boosted One Side Sampling. They estimate $\tilde{\mathbb{V}}_{j \mid\mathcal{O}}$ over a small subset of the $\mathcal{O}$. First they find training instances according to there absolute values of gradients in the descending order. Large gradient means large error i.e. the data point is not learned well.
@@ -58,4 +65,6 @@ The second thing that LightGBM uses is EFB i.e. Exclusive Feature Bundling. Many
     While in other algorithms the trees goes level wise whereas in LightGBM it grows leaf wise
     
 
-![Untitled](LightGBM%206808df6c53dd48b7b490a2423ee52b3c/Untitled.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/14-LightGBM/images/lightGBM.png" width="300"/>
+</p>
