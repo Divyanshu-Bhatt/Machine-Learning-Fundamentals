@@ -2,18 +2,18 @@
 
 This is an extension to the Gradient Boost technique. 
 
-Let our data $\mathcal{D} = \{(x_1,y_1),(x_2,y_2),\cdots,(x_m,y_m)\}$ where $x_i \in \R^n$ and $y_i \in \R$ or $y_i \in \{0,1\}$ based on our type of problem. 
+Let our data $\mathcal{D} = \{(x_1,y_1),(x_2,y_2),\cdots,(x_m,y_m)\}$ where $x_i \in \mathbb{R}^n$ and $y_i \in \mathbb{R}$ or $y_i \in \{0,1\}$ based on our type of problem. 
 
-Let $\mathcal{L}(y_i,f(x_i))$ be the loss function.We add a regulariser to the Gradient Boost Machine and XGBoost is when we are finding the appropriate value for each of the leaf nodes. Earlier we use to do it as following
+Let $\mathcal{L}(y_i,f(x_i))$ be the loss function. We add a regulariser to the Gradient Boost Machine and XGBoost is when we are finding the appropriate value for each of the leaf nodes. Earlier we use to do it as following
 
 $$
-\gamma_j = \argmin_\gamma \sum_{x_i \in l_j}\mathcal{L}(y_i,f_m(x_i)+\gamma)
+\gamma_j = \arg \min_\gamma \sum_{x_i \in l_j}\mathcal{L}(y_i,f_m(x_i)+\gamma)
 $$
 
 but now we will add a regulariser term i.e. 
 
 $$
-\gamma_j = \argmin_\gamma \sum_{x_i \in l_j}\mathcal{L}(y_i,f_m(x_i)+\gamma)  +{1\over2}\lambda \gamma^2
+\gamma_j = \arg \min_\gamma \sum_{x_i \in l_j}\mathcal{L}(y_i,f_m(x_i)+\gamma)  +{1\over2}\lambda \gamma^2
 $$
 
 where $\lambda$ is our regulariser parameter. We can solve it using Taylor series 
@@ -27,7 +27,10 @@ $$
 Finding the value of $\gamma_j$ using differentiation 
 
 $$
-\sum_{x_i \in l_i}{d\mathcal{L}(y_i,f_m(x_i)  )\over d f_m}+\sum_{x_i \in l_i}{d^2\mathcal{L}(y_i,f_m(x_i))\over df_m^2}\gamma + \lambda \gamma =0\\
+\sum_{x_i \in l_i}{d\mathcal{L}(y_i,f_m(x_i)  )\over d f_m}+\sum_{x_i \in l_i}{d^2\mathcal{L}(y_i,f_m(x_i))\over df_m^2}\gamma + \lambda \gamma =0
+$$
+
+$$
 \gamma_j = {\displaystyle\sum_{x_i\in l_i}{-d\over df_m}\mathcal{L}(y_i,f_m(x_i))\over \displaystyle\sum_{x_i\in l_i}{-d^2\over df_m^2}\mathcal{L}(y_i,f_m(x_i))+\lambda}
 $$
 
