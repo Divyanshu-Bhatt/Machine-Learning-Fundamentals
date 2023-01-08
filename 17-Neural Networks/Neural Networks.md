@@ -2,9 +2,9 @@
 
 Neural Networks contains an input layer, one or more hidden layers, and an output layer. Each node, connects to another and has an associated weight and bias. 
 
-![Red → Input features
-Blue →Hidden layers
-Green → Output](Introduction%20to%20Neural%20Networks%201d003390c7824c87b65c83cc4be8ec64/Untitled.svg)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/17-Neural%20Networks/images/nn.svg" width="300"/>
+</p>
 
 Red → Input features
 Blue →Hidden layers
@@ -14,7 +14,7 @@ So each node has its own weights and bias i.e. there is linear regression going 
 
 But linear functions composing linear functions will result in another linear function. Hence the hidden layers won’t be much help, they will perform similar to linear regression. So we use a activation function. 
 
-Let the Input features i.e. our data set be $X \in \R^{n}$. Then we take the first weight matrix $W_1 \in \R^{n\times k}$ and the bias vector $b_1\in \R^k$ which will give 
+Let the Input features i.e. our data set be $X \in \mathbb{R}^{n}$. Then we take the first weight matrix $W_1 \in \mathbb{R}^{n\times k}$ and the bias vector $b_1\in \mathbb{R}^k$ which will give 
 
 $$
 Z_1 = W_1X + b_1 
@@ -58,9 +58,9 @@ where $\alpha$ is our learning rate. Now, more the layers we add more will be ou
     
     | Names | Function |
     | --- | --- |
-    | Sigmoid | ⁍ |
-    | ReLU | ⁍ |
-    | tanh | ⁍ |
+    | Sigmoid | ${1\over 1+\exp(-x)}$ |
+    | ReLU | $\max(0,x)$ |
+    | tanh | ${e^x - e^{-x} \over e^x + e^{-x}}$ |
 2. **Difference between Forward Propagation and Backward Propagation ?**
     
     Forward propagation is when the data set is fed in the forward direction through the network i.e. using the weights, biases and the activation function we get our output. Whereas, Back propagation is when the output will help to change the weights and biases with the help of the loss function.
