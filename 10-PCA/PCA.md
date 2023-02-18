@@ -2,7 +2,7 @@
 
 Principal Component Analysis is a dimensionality reduction method that is often used to reduce the dimensions of large data sets, by transforming a large set of variables into a smaller one that still contains most of the information in the large set in order to have a better visualisation of the data.
 
-Let the data set be $\mathcal{X} = [x_1,\cdots,x_m],x_i\in \R^n$ which has mean $0$. Considering that the data has mean $0$ won’t affect PCA and will make the calculations easier. The covariance matrix of this data will be $(\mu = 0)$
+Let the data set be $\mathcal{X} = [x_1,\cdots,x_m],x_i\in \mathbb{R}^n$ which has mean $0$. Considering that the data has mean $0$ won’t affect PCA and will make the calculations easier. The covariance matrix of this data will be $(\mu = 0)$
 
 $$
 S = {1\over n}\sum_{i=1}^nx_ix_i^T
@@ -11,13 +11,13 @@ $$
 we assume there exists a low dimensional compressed representation 
 
 $$
-z_i = B^Tx_i \in \R^M
+z_i = B^Tx_i \in \mathbb{R}^M
 $$
 
 where we define the projection matrix(orthogonal matrix), the columns of $B$ would be orthonormal. 
 
 $$
-B = [b_1,\cdots,b_m] \in \R^{n\times m}
+B = [b_1,\cdots,b_m] \in \mathbb{R}^{n\times m}
 $$
 
 We can find the variance in the data $z$
@@ -34,7 +34,7 @@ $$
 
 We maximise the variance in order to preserve as much variability (or information) as possible during the process of reducing the dimension of the data.   
 
-We start by seeking a single vector $b_1 \in \R%D$ that maximises the variance of the projected data, i.e. we aim to maximise the variance of the first co-ordinate $z_1$ of $z\in \R^M$
+We start by seeking a single vector $b_1 \in \mathbb{R}%D$ that maximises the variance of the projected data, i.e. we aim to maximise the variance of the first co-ordinate $z_1$ of $z\in \mathbb{R}^M$
 
 $$
 V_1 = \mathbb{V}[z_1] = {1\over m}\sum_{i=1}^mz_{1i}^2\\
@@ -49,24 +49,32 @@ $$
 So our constrained optimisation problem is 
 
 $$
-\max_{b_1} b_1^TSb_1\\
+\begin{gathered}
+\max_{b_1} b_1^TSb_1\newline
 \ce{subject to} \quad \|b_1\|^2 =1
+\end{gathered}
 $$
 
 so we can use the Lagrangian multiplier and maximise it 
 
 $$
+\begin{gathered}
 \mathcal{L}(b_1,\lambda_1) = b_1^TSb_1+\lambda_1(1-b_1^Tb_1)
+\end{gathered}
 $$
 
 $$
+\begin{gathered}
 {\partial \mathcal{L} \over \partial b_1} = 2b_1^TS-2\lambda_1b_1^T = 0\\
 Sb_1 = \lambda_1b_1 
+\end{gathered}
 $$
 
 $$
+\begin{gathered}
 {\partial \mathcal{L} \over \partial \lambda_1} = 1-b_1^Tb_1\\
 b_1^Tb_1=1
+\end{gathered}
 $$
 
 Hence, $b_1$ is an eigenvector of the data covariance matrix $S$ and the Lagrange multiplier $\lambda_1$ plays the role of the corresponding eigenvalue which would be equal to the variance 
@@ -79,27 +87,37 @@ So for creating the matrix $B$ in order to maximise the variance in that dimensi
 
 Thus the steps for performing PCA are
 
-![Original Data](Principal%20Component%20Analysis%204699cec26e6443168fb5561900a7904a/Untitled.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/10-PCA/images/Untitled.png" width="200"/>
+</p>
 
 Original Data
 
 1. Centre the original data by subtracting  the mean from the data set
 
-![Untitled](Principal%20Component%20Analysis%204699cec26e6443168fb5561900a7904a/Untitled%201.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/10-PCA/images/Untitled 1.png" width="200"/>
+</p>
 
 1. Divide by the standard deviation so that variance become $1$ along each axis
 2. Compute the covariance matrix of the data
 3. Compute the eigenvalues and eigenvectors of the covariance matrix in order to compute data
 
-![Untitled](Principal%20Component%20Analysis%204699cec26e6443168fb5561900a7904a/Untitled%202.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/10-PCA/images/Untitled 2.png" width="200"/>
+</p>
 
 1. Project the data onto the space whose basis are the first $M$ eigenvectors
 
-![Untitled](Principal%20Component%20Analysis%204699cec26e6443168fb5561900a7904a/Untitled%203.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/10-PCA/images/Untitled 3.png" width="200"/>
+</p>
 
 1. Undo the standardisation by again multiplying the standard deviation and adding the mean
 
-![Untitled](Principal%20Component%20Analysis%204699cec26e6443168fb5561900a7904a/Untitled%204.png)
+<p align="center">
+     <img src="https://github.com/Divyanshu-Bhatt/Machine-Learning-Fundamentals/blob/main/10-PCA/images/Untitled 4.png" width="200"/>
+</p>
 
 ### Questions
 
